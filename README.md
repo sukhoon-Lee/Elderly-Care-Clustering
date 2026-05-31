@@ -82,7 +82,6 @@
 알고리즘 분석 결과, 전체 3,448명의 독거노인은 뚜렷한 특징을 가진 5개의 페르소나로 분류되었습니다.
 
 #### 클러스터 해석
-#### 클러스터 해석
 ![독거노인 군집 2D 산점도](<Visualize Clustering (2D).png>)
 ![독거노인 군집 3D 산점도](cluster_3d_animation.gif)
 ![클러스터링 결과 히트맵](Cluster_heatmap.png)
