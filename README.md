@@ -82,7 +82,7 @@
 알고리즘 분석 결과, 전체 3,448명의 독거노인은 뚜렷한 특징을 가진 5개의 페르소나로 분류되었습니다.
 
 #### 클러스터 해석
-![독거노인 군집 2D 산점도](Visualize Clustering (2D).png)
+![독거노인 군집 2D 산점도](VisualizeClustering(2D).png)
 
 ![독거노인 군집 3D 산점도](cluster_3d_animation.gif)
 
@@ -90,7 +90,7 @@
 
 ![RandomForest 결과](RandomForest_Result.png)
 
-![군집별 instance 수](Total instance.png)
+![군집별 instance 수](Totalinstance.png)
 - **Cluster 0 (주거취약형, 396명 / 11.5%)**
   - **특징:** 타 지표 대비 주거 불안정성(월세, 임시거처 등)이 압도적으로 높은 물리적 취약 그룹. (공공임대 및 주거환경 개선 대상)
 - **Cluster 1 (최저위험/자립형, 1,921명 / 55.7%)**
