@@ -176,8 +176,23 @@
 - 보건복지부(2024),[2023년 고독사 실태조사 결과보고서]
 - 한국보건사회연구원(2024), 2023년 노인실태조사마이크로데이터및조사지침서],보건복지데이터포털.
 - 보건복지부(2024),[시도별연령별독거노인현황통계(2022~2024)],공공데이터포털.
-- 행정안전부(2024),[주민등록인구통계:지역별(행정동)성별:연령별 인구수(2026년 4월기준),공공데이터포털.
+- 행정안전부(2024),[주민등록인구통계:지역별(행정동)성별:연령별 인구수(2026년 4월기준)],공공데이터포털.
 - Shahria, M. A., Mithila, S. D., Alam, T., Mahmood, M. S., & Khatun, M. (2026). Uncovering latent patterns in social media usage and mental health: A clustering-based approach using unsupervised machine learning. arXiv preprint.
 - [2025, Development of machine learning models with explainable AI for frailty risk prediction and their web-based application in community public health, Frontiers in Public Health]
 
 ---
+
+## 빠른 시작
+### 환경 요구사항
+```bash
+# Python 버전
+Python 3.11.9 - 3.13 (개발 환경: 3.11.9)
+
+# 필수 시스템 사양
+- RAM: 24GB 이상 권장 (개발 환경)
+- 저장공간: 5GB 이상
+```
+### 즉시 실행 (분석만 진행하는 경우) / bash 실행
+```bash
+
+```
