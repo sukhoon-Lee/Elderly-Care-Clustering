@@ -104,11 +104,19 @@
 알고리즘 분석 결과, 전체 3,448명의 독거노인은 뚜렷한 특징을 가진 5개의 페르소나로 분류되었습니다.
 
 #### 클러스터 해석
-![독거노인 군집 2D 산점도](<Visualize Clustering (2D).png>)
-![독거노인 군집 3D 산점도](cluster_3d_animation.gif)
+#### ***[k-means 군집화 결과 | 히트맵 ]***
 ![클러스터링 결과 히트맵](Cluster_heatmap.png)
+#### ***[k-means 군집화 결과 | 2차원 산점도 ]***
+![독거노인 군집 2D 산점도](<Visualize Clustering (2D).png>)
+#### ***[k-means 군집화 결과 | 3차원 산점도 ]***
+![독거노인 군집 3D 산점도](cluster_3d_animation.gif)
+
+#### ***[Random forest 결과 | 군집별 주요 중요 변수 ]***
 ![RandomForest 결과](RandomForest_Result.png)
+#### ***[군집별 instance 수 (전체의 %) ]***
 ![군집별 instance 수](<Total instance.png>)
+
+
 - **Cluster 0 (주거취약형, 396명 / 11.5%)**
   - **특징:** 타 지표 대비 주거 불안정성(월세, 임시거처 등)이 압도적으로 높은 물리적 취약 그룹. (공공임대 및 주거환경 개선 대상)
 - **Cluster 1 (최저위험/자립형, 1,921명 / 55.7%)**
@@ -161,3 +169,15 @@
 - **시계열 데이터 분석 도입:** 다년간의 추적 조사를 결합하여, "어떤 요인이 Cluster 1(최저위험/자립형), Cluster 2(사회적 고립형) 또는 Cluster4(초고위험군)으로 전락하게 만드는가?"에 대한 동태적 변화 과정을 모델링
 - **공공 행정 데이터 결합:** 설문 데이터뿐만 아니라 지자체의 실제 '복지 서비스 이용 이력', '건강보험 요양급여 내역', '거주지 주변 인프라(공간 데이터)' 등 객관적 데이터를 결합하여 프로파일링의 정밀도를 극대화
 - **맞춤형 복지 자동 매칭 시스템 고도화:** 랜덤 포레스트로 도출한 핵심 변수를 활용하여, 읍면동 주민센터 방문 시 몇 가지 핵심 질문만으로 해당 노인의 소속 군집을 즉시 판별하고 최적의 돌봄 서비스를 자동 추천하는 시스템으로 발전
+
+
+출처
+
+- 보건복지부(2024),[2023년 고독사 실태조사 결과보고서]
+- 한국보건사회연구원(2024), 2023년 노인실태조사마이크로데이터및조사지침서],보건복지데이터포털.
+- 보건복지부(2024),[시도별연령별독거노인현황통계(2022~2024)],공공데이터포털.
+- 행정안전부(2024),[주민등록인구통계:지역별(행정동)성별:연령별 인구수(2026년 4월기준),공공데이터포털.
+- Shahria, M. A., Mithila, S. D., Alam, T., Mahmood, M. S., & Khatun, M. (2026). Uncovering latent patterns in social media usage and mental health: A clustering-based approach using unsupervised machine learning. arXiv preprint.
+- [2025, Development of machine learning models with explainable AI for frailty risk prediction and their web-based application in community public health, Frontiers in Public Health]
+
+---
