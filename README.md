@@ -193,31 +193,59 @@ Python 3.11.9 - 3.13 (개발 환경: 3.11.9)
 ```
 ### 즉시 실행 (분석만 진행하는 경우) / bash 실행
 ```bash
-# 1. 저장소 클론
-git clone https://github.com/sukhoon-Lee/Elderly-Care-Clustering.git
+1. 저장소 클론
+git clone [https://github.com/sukhoon-Lee/Elderly-Care-Clustering.git](https://github.com/sukhoon-Lee/Elderly-Care-Clustering.git)
 cd Elderly-Care-Clustering
 
-# 2. 가상환경 생성 및 활성화
+2. 가상환경 생성 및 활성화
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# 3. 필수 패키지 설치
+3. 필수 패키지 설치
 pip install -r requirements.txt
 
-# 4. 데이터 세팅
-# 원본 데이터(.csv)를 프로젝트 루트의 'DataSet/' 폴더에 위치
+4.  데이터 다운로드 (Google Drive) - 위 공지사항 참고
+# data.zip을 프로젝트 루트에 압축 해제
 
-# 5. 주피터 노트북 실행 환경 띄우기 (.ipynb 파일 직접 실행 권장)
-jupyter notebook
+5. 전체 파이프라인 자동 실행(권장)
+bash run.sh
 
-# ------------------------------------------------------------
-# [실행 순서 가이드] 주피터 환경에서 아래 순서대로 실행
-# 1) preprocessor.ipynb : 결측치 처리 및 변수 스케일링(Min-Max, Standard)
-# 2) Backward_Elimination.ipynb : 후진제거법을 통한 9개 핵심 변수 도출
-# 3) k_means_clustering.ipynb : 최종 모델 학습, 랜덤 포레스트 변수 중요도 추출 및 프로파일링
-# (비교용) DBSCAN.ipynb, Agglomorative.ipynb : K-Means 타당성 검증 모델
-# ------------------------------------------------------------
+6. 데이터 전처리 및 분석 실행 (.ipynb 주피터 노트북 파일을 이용하는 것을 권장)
+# 데이터 전처리 및 스케일링
+jupyter nbconvert --to notebook --execute --inplace preprocessor.ipynb
+2) 후진제거법을 통한 핵심 변수 추출
+jupyter nbconvert --to notebook --execute --inplace Backward_Elimination.ipynb
+# 3) 최종 모델 학습 및 프로파일링
+jupyter nbconvert --to notebook --execute --inplace k_means_clustering.ipynb
 ```
 
-### 전체 파이프라인
+### 프로젝트 구조
+## 프로젝트 구조
 
+```text
+Elderly-Care-Clustering/
+├── README.md                              # 프로젝트 가이드
+├── requirements.txt                       # 패키지 의존성
+├── run.sh                                 # 전체 파이프라인 자동 실행 쉘 스크립트
+├── .gitignore                             # Git 무시 파일
+│
+├── DataSet/                               # 데이터 디렉토리 (Git 제외, 외부 링크 다운로드)
+│   ├── single variable_data.csv           # 전처리 및 스케일링이 완료된 통합 데이터
+│   └── (원본 노인실태조사 등 csv 파일들)
+│
+├── 시각화 결과물 (Images/GIFs)
+│   ├── cluster_3d_animation.gif           # 군집화 결과 3D 애니메이션
+│   ├── Cluster_heatmap.png                # 군집별 핵심 위험도 프로파일링 히트맵
+│   ├── Find_the_optimized_k_value.png     # 최적의 K값 탐색 (Elbow/Silhouette)
+│   ├── RandomForest_Result.png            # 랜덤 포레스트 기반 변수 중요도 결과
+│   ├── Visualize_Clustering_(2D).png      # 2D PCA 군집화 시각화
+│   └── Total_instance.png                 # 군집별 인원수 및 비율 요약
+│
+├── 분석 파이프라인 (Jupyter Notebooks)
+│   ├── preprocessor.ipynb                 # [STEP 1] 데이터 정제 및 스케일링
+│   ├── Backward_Elimination.ipynb         # [STEP 2] 후진제거법 기반 핵심 변수 추출
+│   └── k_means_clustering.ipynb           # [STEP 3] K-Means 군집화 및 RF 프로파일링
+│               
+└── 타당성 검증 모델 (비교 분석용)
+    ├── DBSCAN.ipynb                       # 밀도 기반 군집화 비교 실험 (군집 붕괴 확인)
+    └── Agglomorative.ipynb                # 계층적 군집화 비교 실험 (구조적 안정성 검증)
