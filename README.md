@@ -173,10 +173,9 @@
 
 출처
 
-- 보건복지부(2024),[2023년 고독사 실태조사 결과보고서]
-- 한국보건사회연구원(2024), 2023년 노인실태조사마이크로데이터및조사지침서],보건복지데이터포털.
-- 보건복지부(2024),[시도별연령별독거노인현황통계(2022~2024)],공공데이터포털.
-- 행정안전부(2024),[주민등록인구통계:지역별(행정동)성별:연령별 인구수(2026년 4월기준)],공공데이터포털.
+- 한국보건사회연구원(2024), [2023년 노인실태조사 마이크로데이터 및 조사지침서], 보건복지데이터포털.
+- 보건복지부(2024), [시도별 연령별 독거노인 현황통계(2022~2024)], 공공데이터포털.
+- 행정안전부(2024), [주민등록인구통계: 지역별(행정동) 성별·연령별 인구수(2026년 4월 기준)], 공공데이터포털.
 - Shahria, M. A., Mithila, S. D., Alam, T., Mahmood, M. S., & Khatun, M. (2026). Uncovering latent patterns in social media usage and mental health: A clustering-based approach using unsupervised machine learning. arXiv preprint.
 - [2025, Development of machine learning models with explainable AI for frailty risk prediction and their web-based application in community public health, Frontiers in Public Health]
 
@@ -194,5 +193,31 @@ Python 3.11.9 - 3.13 (개발 환경: 3.11.9)
 ```
 ### 즉시 실행 (분석만 진행하는 경우) / bash 실행
 ```bash
+# 1. 저장소 클론
+git clone https://github.com/sukhoon-Lee/Elderly-Care-Clustering.git
+cd Elderly-Care-Clustering
 
+# 2. 가상환경 생성 및 활성화
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 3. 필수 패키지 설치
+pip install -r requirements.txt
+
+# 4. 데이터 세팅
+# 원본 데이터(.csv)를 프로젝트 루트의 'DataSet/' 폴더에 위치
+
+# 5. 주피터 노트북 실행 환경 띄우기 (.ipynb 파일 직접 실행 권장)
+jupyter notebook
+
+# ------------------------------------------------------------
+# [실행 순서 가이드] 주피터 환경에서 아래 순서대로 실행
+# 1) preprocessor.ipynb : 결측치 처리 및 변수 스케일링(Min-Max, Standard)
+# 2) Backward_Elimination.ipynb : 후진제거법을 통한 9개 핵심 변수 도출
+# 3) k_means_clustering.ipynb : 최종 모델 학습, 랜덤 포레스트 변수 중요도 추출 및 프로파일링
+# (비교용) DBSCAN.ipynb, Agglomorative.ipynb : K-Means 타당성 검증 모델
+# ------------------------------------------------------------
 ```
+
+### 전체 파이프라인
+
