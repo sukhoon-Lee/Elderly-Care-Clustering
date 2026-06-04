@@ -207,16 +207,13 @@ pip install -r requirements.txt
 4.  데이터 다운로드 (Google Drive) - 위 공지사항 참고
 # data.zip을 프로젝트 루트에 압축 해제
 
-5. 전체 파이프라인 자동 실행(권장)
-bash run.sh
-
-6. 데이터 전처리 및 분석 실행 (.ipynb 주피터 노트북 파일을 이용하는 것을 권장)
+5. 데이터 전처리 및 분석 실행 (.ipynb 주피터 노트북 파일을 이용하는 것을 권장)
 # 데이터 전처리 및 스케일링
 jupyter nbconvert --to notebook --execute --inplace preprocessor.ipynb
-2) 후진제거법을 통한 핵심 변수 추출
+# 2) 후진제거법을 통한 핵심 변수 추출
 jupyter nbconvert --to notebook --execute --inplace Backward_Elimination.ipynb
 # 3) 최종 모델 학습 및 프로파일링
-jupyter nbconvert --to notebook --execute --inplace k_means_clustering.ipynb
+jupyter nbconvert --to notebook --execute --inplace Modeling.ipynb
 ```
 
 ### 프로젝트 구조
@@ -244,8 +241,95 @@ Elderly-Care-Clustering/
 ├── 분석 파이프라인 (Jupyter Notebooks)
 │   ├── preprocessor.ipynb                 # [STEP 1] 데이터 정제 및 스케일링
 │   ├── Backward_Elimination.ipynb         # [STEP 2] 후진제거법 기반 핵심 변수 추출
-│   └── k_means_clustering.ipynb           # [STEP 3] K-Means 군집화 및 RF 프로파일링
+│   └── Modeling.ipynb           # [STEP 3] K-Means 군집화 및 RF 프로파일링
 │               
 └── 타당성 검증 모델 (비교 분석용)
     ├── DBSCAN.ipynb                       # 밀도 기반 군집화 비교 실험 (군집 붕괴 확인)
     └── Agglomorative.ipynb                # 계층적 군집화 비교 실험 (구조적 안정성 검증)
+```
+
+## 재현 가이드
+
+### 단계별 실행
+
+#### 1단계: 환경 설정
+```bash
+# Python 버전 확인 (3.11.9 권장 / 3.13 런타임 환경 테스트 완료)
+python --version
+
+# 가상환경 생성 및 활성화 (충돌 방지를 위해 가상환경 사용을 권장합니다)
+
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 패키지 설치
+pip install -r requirements.txt
+```
+
+#### 2단계: 데이터 전처리
+```bash
+# Jupyter 노트북으로 실행 (권장)
+jupyter notebook preprocessor.ipynb
+
+# 또는 Python 스크립트로 실행
+python preprocessor.py
+```
+#### 3단계 : 핵심 변수 추출
+```bash
+# Jupyter 노트북으로 실행 (권장)
+jupyter notebook Backward_Elimination.ipynb
+
+# 또는 Python 스크립트로 실행
+python Backward_Elimination.py
+```
+
+#### 4단계: 클러스터링 분석(최종 모델링 및 프로파일링 시각화)
+```bash
+# Jupyter 노트북으로 실행 (권장)
+# K-Means 군집화 및 RF 프로파일링 
+jupyter notebook Modeling.ipynb
+
+# 또는 Python 스크립트로 실행
+python Modeling.py
+```
+
+
+### 결과 파일
+```
+실행 완료 후 확인 가능한 주요 결과물:
+├── DataSet/
+│   └── single variable_data.csv           # 스케일링이 완료된 통합 분석용 데이터
+│
+├── 프로젝트 루트 (또는 이미지 출력물)
+│   ├── Total_instance.png                 # 군집별 인원수 및 비율 요약표
+│   ├── Cluster_heatmap.png                # 군집별 핵심 위험도 프로파일링 히트맵
+│   ├── RandomForest_Result.png            # 랜덤 포레스트 변수 중요도 (원인 분석)
+│   ├── Visualize_Clustering_(2D).png      # 2D PCA 기반 군집 시각화
+│   └── cluster_3d_animation.gif           # 3D 군집 분포 애니메이션
+```
+
+---
+## 문제 해결 가이드
+
+### 자주 발생하는 오류
+#### 1. KeyError:'cluster' 오류
+주피터 노트북에서 K-Means 군집화 모델을 돌리기 전에 랜덤 포레스트나 요약표 출력 셀 먼저 실행 시, 데이터프레임에 cluster열이 생성되지 않았을 때 발생. (메모리 덮어쓰기 꼬임)
+주피터 상단의 [Kernel] ➔ [Restart Kernel and Run All Cells...]를 클릭하여, 위에서 아래로 순서대로 실행
+
+#### 2. 한글 폰트 오류
+```python
+import matplotlib.pyplot as plt
+import platform
+
+if platform.system() == 'Windows':
+    plt.rc('font', family='Malgun Gothic')
+elif platform.system() == 'Darwin': # macOS
+
+    plt.rc('font', family='AppleGothic')
+plt.rcParams['axes.unicode_minus'] = False
+```
+
+#### 3. Github Push 시 'File too large'오류 발생
+100MB 이상의 대용량 원본 데이터 파일이 포함된 DataSet/ 폴더를 GitHub에 업로드하여 발생
+
+---
