@@ -242,12 +242,11 @@ jupyter nbconvert --to notebook --execute --inplace Modeling.ipynb
 Elderly-Care-Clustering/
 ├── README.md                              # 프로젝트 가이드
 ├── requirements.txt                       # 패키지 의존성
-├── run.sh                                 # 전체 파이프라인 자동 실행 쉘 스크립트
 ├── .gitignore                             # Git 무시 파일
 │
 ├── DataSet/                               # 데이터 디렉토리 (Git 제외, 외부 링크 다운로드)
 │   ├── single variable_data.csv           # 전처리 및 스케일링이 완료된 통합 데이터
-│   └── (원본 노인실태조사 등 csv 파일들)
+│   └── (2023 노인실태조사_DATA.csv 외 2개 원본 csv파일)
 │
 ├── 시각화 결과물 (Images/GIFs)
 │   ├── cluster_3d_animation.gif           # 군집화 결과 3D 애니메이션
