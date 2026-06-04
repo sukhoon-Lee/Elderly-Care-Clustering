@@ -259,7 +259,7 @@ Elderly-Care-Clustering/
 ├── 분석 파이프라인 (Jupyter Notebooks)
 │   ├── preprocessor.ipynb                 # [STEP 1] 데이터 정제 및 스케일링
 │   ├── Backward_Elimination.ipynb         # [STEP 2] 후진제거법 기반 핵심 변수 추출
-│   └── Modeling.ipynb           # [STEP 3] K-Means 군집화 및 RF 프로파일링
+│   └── Modeling.ipynb                     # [STEP 3] K-Means 군집화 및 RF 프로파일링
 │               
 └── 타당성 검증 모델 (비교 분석용)
     ├── DBSCAN.ipynb                       # 밀도 기반 군집화 비교 실험 (군집 붕괴 확인)
