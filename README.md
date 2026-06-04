@@ -181,7 +181,6 @@
 - 한국보건사회연구원(2024), [2023년 노인실태조사 마이크로데이터 및 조사지침서], 보건복지데이터포털.
 - 보건복지부(2024), [시도별 연령별 독거노인 현황통계(2022~2024)], 공공데이터포털.
 - 행정안전부(2024), [주민등록인구통계: 지역별(행정동) 성별·연령별 인구수(2026년 4월 기준)], 공공데이터포털.
-- Shahria, M. A., Mithila, S. D., Alam, T., Mahmood, M. S., & Khatun, M. (2026). Uncovering latent patterns in social media usage and mental health: A clustering-based approach using unsupervised machine learning. arXiv preprint.
 - [2025, Development of machine learning models with explainable AI for frailty risk prediction and their web-based application in community public health, Frontiers in Public Health]
 
 ---
