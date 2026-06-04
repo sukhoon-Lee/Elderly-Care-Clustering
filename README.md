@@ -272,7 +272,7 @@ Elderly-Care-Clustering/
 
 #### 1단계: 환경 설정
 ```bash
-# Python 버전 확인 (3.11.9 권장 / 3.13 런타임 환경 테스트 완료)
+# Python 버전 확인 (3.11.9 권장)
 python --version
 
 # 가상환경 생성 및 활성화 (충돌 방지를 위해 가상환경 사용을 권장합니다)
