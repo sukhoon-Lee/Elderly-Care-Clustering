@@ -194,7 +194,7 @@
 ---
 
 ### 🛠 개발 환경
-> **Environment**: Python 3.11.9, Jupyter Notebook (Windows/macOS 호환 테스트 완료)
+> **Environment**: Jupyter Notebook 
 
 ### 📬 연락처 및 문의
 본 독거노인 위험도 군집 분석 모델링 및 데이터 파이프라인과 관련하여 문의 사항이 있으신 경우 아래 이메일로 연락 바랍니다.
