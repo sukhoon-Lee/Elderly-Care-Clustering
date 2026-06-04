@@ -72,7 +72,8 @@
 
 #### 데이터 전처리 (Data Preprocessing) & Feature Engineering
 단순한 기준 기반 평가의 한계를 넘기 위해 머신러닝에 최적화된 데이터로 가공
-- **다중공선성 및 노이즈 의심 변수 제거:** 실루엣 점수를 기준으로 군집의 응집도를 저하시키는 노이즈 변수(예: 나이, 디지털 소외 등 전반적 공통 특성)와 의미가 중복되는 다중공선성 의심 변수를 후진제거법으로 탐색하여 총 11개를 제거하고 핵심 9개 변수로 압축
+- **범주형 데이터의 위험도 환산($0\sim1$ Min-Max):** 원본 데이터셋의 비연속적인 범주형 위험 지표들을 도메인 지식 기반의 환산식을 적용하여 고유의 위험 가중치를 가진 $0$에서 $1$ 사이의 연속형 변수(Min-Max Scaling)로 1차 정량화 처리
+- **노이즈 변수 제거(실루엣 점수 기반 후진제거법):** 초기 20개 변수에 대한 VIF(분산팽창지수) 검증 결과 모두 기준치(10) 이하로 확인. 다만, 초기 20개 전부 활용 시 군집화가 잘 이뤄지지 않는 문제발생. 다차원 거리 계산을 방해하는 '순수 노이즈 변수'를 솎아내기 위해, 군집의 응집도(실루엣 점수)를 기준으로 방해 변수를 순차 탐색하는 **후진제거법**을 자체 설계 및 적용. 이를 통해 11개의 방해 변수를 제거하고 핵심 9개 변수로 압축.
 - **스케일링 (StandardScaler):** 각 변수 간의 단위와 편차를 통일하여 K-Means의 거리 계산이 한쪽 변수에 편향되지 않도록 평균 0, 분산 1로 표준화를 적용
 
 #### EDA 및 변수 선택(Feature Selection) 결과: 9개 핵심 지표 선정
@@ -229,9 +230,11 @@ pip install -r requirements.txt
 5. 데이터 전처리 및 분석 실행 (.ipynb 주피터 노트북 파일을 이용하는 것을 권장)
 # 데이터 전처리 및 스케일링
 jupyter nbconvert --to notebook --execute --inplace preprocessor.ipynb
-# 2) 후진제거법을 통한 핵심 변수 추출
+# [비교 검증] VIF 기반 다중공선성 확인 (전통적 통계 방식의 한계 증명용)
+jupyter nbconvert --to notebook --execute --inplace VIF_Check.ipynb
+# 후진제거법을 통한 핵심 노이즈 변수 제거 및 추출
 jupyter nbconvert --to notebook --execute --inplace Backward_Elimination.ipynb
-# 3) 최종 모델 학습 및 프로파일링
+# 최종 모델 학습 및 프로파일링
 jupyter nbconvert --to notebook --execute --inplace Modeling.ipynb
 ```
 
@@ -262,6 +265,7 @@ Elderly-Care-Clustering/
 │   └── Modeling.ipynb                     # [STEP 3] K-Means 군집화 및 RF 프로파일링
 │               
 └── 타당성 검증 모델 (비교 분석용)
+    ├── VIF_Check.ipynb
     ├── DBSCAN.ipynb                       # 밀도 기반 군집화 비교 실험 (군집 붕괴 확인)
     └── Agglomorative.ipynb                # 계층적 군집화 비교 실험 (구조적 안정성 검증)
 ```
